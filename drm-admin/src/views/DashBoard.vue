@@ -1,17 +1,23 @@
 <script setup>
 import PieChart from '@/components/dashboard/CryptoRequestPie.vue'
 import WeeklyRequestBar from '@/components/dashboard/WeeklyRequestBar.vue'
+// 다른 컴포넌트도 아래처럼 추가 예정
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-4 p-4">
-    <div class="rounded-2xl shadow p-4 bg-gray-50 border border-blue-500">
+  <div class="grid grid-cols-2 gap-6 p-6">
+    <div class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]">
       <PieChart />
     </div>
-    <div class="rounded-2xl shadow p-4 bg-gray-50 border border-blue-500">
+    <div class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]">
       <WeeklyRequestBar />
     </div>
-    <!-- 나머지 2개 자리도 동일하게 -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]">
+      <!-- 향후: WeeklyBatchBar.vue -->
+    </div>
+    <div class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]">
+      <!-- 향후: WeeklyErrorLine.vue -->
+    </div>
   </div>
 </template>
 

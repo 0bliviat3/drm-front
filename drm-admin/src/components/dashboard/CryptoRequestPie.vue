@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex justify-center items-center">
+  <div class="w-full h-full flex bg-white justify-center items-center">
     <Pie :data="chartData" :options="chartOptions" v-if="chartData" />
   </div>
 </template>
