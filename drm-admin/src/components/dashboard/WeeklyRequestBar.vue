@@ -1,5 +1,6 @@
 <template>
   <div class="w-full h-full bg-white">
+    <h2 class="text-lg font-semibold mb-4">주간 요건 건수</h2>
     <Bar v-if="chartData" :data="chartData" :options="chartOptions" />
   </div>
 </template>

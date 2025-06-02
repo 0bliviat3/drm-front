@@ -1,5 +1,6 @@
 <template>
-  <div class="w-full h-full flex bg-white justify-center items-center">
+  <div class="w-full h-full bg-white rounded-2xl p-4 shadow-md">
+    <h2 class="text-lg font-semibold mb-4">일일 암복호화 요청 현황</h2>
     <Pie :data="chartData" :options="chartOptions" v-if="chartData" />
   </div>
 </template>
