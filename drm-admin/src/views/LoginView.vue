@@ -45,7 +45,7 @@
   
           console.log('로그인 성공:', response.data)
           // 여기에 로그인 성공 후 처리 추가 (예: 토큰 저장, 페이지 이동 등)
-  
+          this.$router.push('/');
         } catch (error) {
           console.error('로그인 실패:', error)
           this.errorMessage = '아이디 또는 비밀번호가 올바르지 않습니다.'

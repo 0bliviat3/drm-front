@@ -6,6 +6,8 @@
   </template>
   
   <script>
+  import api from '@/api/axios'
+
   export default {
     data() {
       return {
@@ -26,8 +28,16 @@
         alert('프로필 페이지는 추후 구현됩니다.');
       },
       logout() {
-        document.cookie = 'userName=; Max-Age=0';
-        this.$router.push('/login');
+        try {
+          const response = api.get('/sign-out')
+          document.cookie = 'userName=; userId=; Max-Age=0';
+  
+          console.log('로그아웃 성공:', response.data)
+          // 여기에 로그인 성공 후 처리 추가 (예: 토큰 저장, 페이지 이동 등)
+          this.$router.push('/login');
+        } catch (error) {
+          console.error('로그아웃 실패:', error)
+        }        
       }
     }
   };
