@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/LoginView.vue'
 import Dashboard from '@/views/Dashboard.vue';
+import BatchManager from '@/views/BatchManager.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 
 const routes = [
@@ -16,7 +17,10 @@ const routes = [
         path: '/dashboard',
         component: Dashboard,
       },
-      // 다른 페이지도 여기에 추가
+      {
+        path: '/batch',
+        component: BatchManager,
+      },
     ]
   },
   {
