@@ -5,12 +5,13 @@ import WeeklyRequestBar from '@/components/dashboard/WeeklyRequestBar.vue'
 
 <template>
   <div class="grid grid-cols-2 gap-4 p-4">
-    <div class="bg-white rounded-2xl shadow p-4">
+    <div class="rounded-2xl shadow p-4 bg-gray-50 border border-blue-500">
       <PieChart />
     </div>
-    <div class="bg-white rounded-2xl shadow p-4">
+    <div class="rounded-2xl shadow p-4 bg-gray-50 border border-blue-500">
       <WeeklyRequestBar />
     </div>
-    <!-- 나머지 2개 컴포넌트 자리 -->
+    <!-- 나머지 2개 자리도 동일하게 -->
   </div>
 </template>
+
