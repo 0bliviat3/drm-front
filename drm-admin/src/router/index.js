@@ -3,6 +3,7 @@ import LoginView from '@/views/LoginView.vue'
 import Dashboard from '@/views/Dashboard.vue';
 import BatchManager from '@/views/BatchManager.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import UserList from '@/components/user/UserList.vue';
 
 const routes = [
   {
@@ -20,7 +21,11 @@ const routes = [
       {
         path: '/batch',
         component: BatchManager,
-      },      
+      },
+      {
+        path:'/users',
+        component: UserList
+      }     
     ]
   },
   {

@@ -27,7 +27,8 @@ const toggleState = async (job, val) => {
         await api.put('/batch-management/edit', {
             jobBeanName: job.jobBeanName,
             state: 'ENABLE',
-            cronExpression: job.cronExpression
+            cronExpression: job.cronExpression,
+            jobParams: job.jobParams
         })
         console.log('toggle on!')
     } else {
