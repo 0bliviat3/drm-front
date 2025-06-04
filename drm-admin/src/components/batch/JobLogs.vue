@@ -1,18 +1,23 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import api from '@/api/axios'
 import Popup from '@/components/common/PopupModal.vue'
 
 const jobs = ref([])
 const showPopup = ref(false)
 const selectedMessage = ref('')
+const currentPage = ref(0)
+const pageSize = 10
+const totalPages = ref(0)
 
 const fetchJobLogs = async () => {
   try {
     const response = await api.get('/job-executions', {
-      params: { page: 0, pageSize: 10 }
+      params: { page: currentPage.value, pageSize }
     })
-    jobs.value = response.data
+
+    jobs.value = response.data.content
+    totalPages.value = response.data.totalPages
   } catch (e) {
     console.error('Failed to fetch job logs:', e)
   }
@@ -21,19 +26,24 @@ const fetchJobLogs = async () => {
 const truncate = (text, maxLength = 30) =>
   text?.length > maxLength ? text.slice(0, maxLength) + '...' : text
 
-
+onMounted(fetchJobLogs)
+watch(currentPage, fetchJobLogs)
 
 function openPopup(msg) {
   selectedMessage.value = msg
   showPopup.value = true
 }
 
+const goToPage = (page) => {
+  if (page >= 0 && page < totalPages.value) {
+    currentPage.value = page
+  }
+}
 
 const formatDate = (datetime) =>
   datetime ? new Date(datetime).toLocaleString() : '-'
-
-onMounted(fetchJobLogs)
 </script>
+
 
 <template>
   <div class="p-4 relative">
@@ -66,5 +76,25 @@ onMounted(fetchJobLogs)
         </tr>
       </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div class="flex justify-center items-center space-x-4 mt-4">
+    <button
+        @click="goToPage(currentPage - 1)"
+        :disabled="currentPage === 0"
+        class="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
+    >
+        이전
+    </button>
+    <span>Page {{ currentPage + 1 }} / {{ totalPages }}</span>
+    <button
+        @click="goToPage(currentPage + 1)"
+        :disabled="currentPage >= totalPages - 1"
+        class="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
+    >
+        다음
+    </button>
+    </div>
+
   </div>
 </template>
