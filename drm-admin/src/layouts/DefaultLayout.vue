@@ -22,7 +22,9 @@ export default {
 
 <style scoped>
 .main-content {
-  margin-left: 220px;
+  margin-left: 150px;
+  margin-right: 150px;
   padding: 1rem;
+  width: 90%;
 }
 </style>

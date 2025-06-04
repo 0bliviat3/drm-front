@@ -50,7 +50,7 @@ const formatDate = (datetime) =>
       <Popup :visible="showPopup" :message="selectedMessage" @close="showPopup = false" />
   
       <!-- 표 카드 영역 -->
-      <div class="bg-white shadow-md rounded-lg p-6 min-h-[400px]">
+      <div class="shadow-md rounded-lg p-6 min-h-[400px]">
         <table class="w-full table-fixed border-collapse">
           <thead class="bg-[#369870] text-white text-sm">
             <tr>
@@ -69,13 +69,13 @@ const formatDate = (datetime) =>
                 :key="job.jobExecutionId"
                 class="text-sm text-gray-800 hover:bg-[#e6f5f0] hover:text-[#1f4033]"
             >
-                <td class="p-3 border-b border-gray-200">{{ job.jobName }}</td>
-                <td class="p-3 border-b border-gray-200">{{ formatDate(job.createTime) }}</td>
-                <td class="p-3 border-b border-gray-200">{{ formatDate(job.startTime) }}</td>
-                <td class="p-3 border-b border-gray-200">{{ formatDate(job.endTime) }}</td>
-                <td class="p-3 border-b border-gray-200">{{ job.status }}</td>
-                <td class="p-3 border-b border-gray-200">{{ job.exitCode }}</td>
-                <td class="p-3 border-b border-gray-200">
+                <td class="p-3 h-[40px] border-b border-gray-200">{{ job.jobName }}</td>
+                <td class="p-3 h-[40px] border-b border-gray-200">{{ formatDate(job.createTime) }}</td>
+                <td class="p-3 h-[40px] border-b border-gray-200">{{ formatDate(job.startTime) }}</td>
+                <td class="p-3 h-[40px] border-b border-gray-200">{{ formatDate(job.endTime) }}</td>
+                <td class="p-3 h-[40px] border-b border-gray-200">{{ job.status }}</td>
+                <td class="p-3 h-[40px] border-b border-gray-200">{{ job.exitCode }}</td>
+                <td class="p-3 h-[40px] border-b border-gray-200">
                 <span
                     class="cursor-pointer text-[#369870] underline hover:text-[#1f4033]"
                     @click="openPopup(job.exitMessage)"
