@@ -4,6 +4,7 @@ import Dashboard from '@/views/Dashboard.vue';
 import BatchManager from '@/views/BatchManager.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import UserList from '@/components/user/UserList.vue';
+import { compile } from 'vue';
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/cron-edit',
     name: 'CronEdit',
     component: () => import('@/views/CronEdit.vue')
+  },
+  {
+    path: '/user-create',
+    name: 'UserCreate',
+    component: () => import('@/components/user/UserCreate.vue')
   }
 ]
 

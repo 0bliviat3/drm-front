@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import api from '@/api/axios'
 import dayjs from 'dayjs'
 
@@ -27,15 +27,42 @@ const formatDate = (dateStr) => {
   return dateStr ? dayjs(dateStr).format('YYYY-MM-DD HH:mm:ss') : '-'
 }
 
-onMounted(fetchUsers)
+const openCreateUserWindow = () => {
+  const width = 400
+  const height = 450
+  const left = window.screenX + (window.outerWidth - width) / 2
+  const top = window.screenY + (window.outerHeight - height) / 2
+  const features = `width=${width},height=${height},top=${top},left=${left},resizable=no`
+
+  window.open('/user-create', '_blank', features)
+}
+
+
+onMounted(() => {
+  fetchUsers()
+  window.addEventListener('message', handleMessage)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('message', handleMessage)
+})
+
 watch(currentPage, fetchUsers)
+
+const handleMessage = (event) => {
+  if (event.data === 'user-created') {
+    fetchUsers()
+  }
+}
 </script>
 
 <template>
   <div class="shadow-md rounded-lg p-4 border border-gray-200">
     <!-- 생성 버튼 -->
     <div class="text-right mb-2">
-      <button class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">
+      <button 
+       @click="openCreateUserWindow()"
+       class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">
         사용자 생성
       </button>
     </div>
