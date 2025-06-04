@@ -46,55 +46,69 @@ const formatDate = (datetime) =>
 
 
 <template>
-  <div class="p-4 relative">
-    <Popup :visible="showPopup" :message="selectedMessage" @close="showPopup = false" />
-    <table class="w-full table-auto border border-gray-300 rounded">
-      <thead class="bg-gray-100">
-        <tr>
-          <th class="p-2 border">Job Name</th>
-          <th class="p-2 border">Create Time</th>
-          <th class="p-2 border">Start Time</th>
-          <th class="p-2 border">End Time</th>
-          <th class="p-2 border">Status</th>
-          <th class="p-2 border">Exit Code</th>
-          <th class="p-2 border">Exit Message</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="job in jobs" :key="job.jobExecutionId" class="text-sm text-center">
-          <td class="p-2 border">{{ job.jobName }}</td>
-          <td class="p-2 border">{{ formatDate(job.createTime) }}</td>
-          <td class="p-2 border">{{ formatDate(job.startTime) }}</td>
-          <td class="p-2 border">{{ formatDate(job.endTime) }}</td>
-          <td class="p-2 border">{{ job.status }}</td>
-          <td class="p-2 border">{{ job.exitCode }}</td>
-          <td class="p-2 border">
-            <span class="cursor-pointer text-blue-600 underline" @click="openPopup(job.exitMessage)">
-              {{ truncate(job.exitMessage) }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Pagination -->
-    <div class="flex justify-center items-center space-x-4 mt-4">
-    <button
-        @click="goToPage(currentPage - 1)"
-        :disabled="currentPage === 0"
-        class="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
-    >
-        이전
-    </button>
-    <span>Page {{ currentPage + 1 }} / {{ totalPages }}</span>
-    <button
-        @click="goToPage(currentPage + 1)"
-        :disabled="currentPage >= totalPages - 1"
-        class="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
-    >
-        다음
-    </button>
+    <div class="p-6 bg-[gray] min-h-[450px] border">
+      <Popup :visible="showPopup" :message="selectedMessage" @close="showPopup = false" />
+  
+      <!-- 표 카드 영역 -->
+      <div class="bg-white shadow-md rounded-lg p-6 min-h-[400px]">
+        <table class="w-full table-fixed border-collapse">
+          <thead class="bg-[#369870] text-white text-sm">
+            <tr>
+              <th class="p-3 border-b border-gray-200 text-left">Job Name</th>
+              <th class="p-3 border-b border-gray-200 text-left">Create Time</th>
+              <th class="p-3 border-b border-gray-200 text-left">Start Time</th>
+              <th class="p-3 border-b border-gray-200 text-left">End Time</th>
+              <th class="p-3 border-b border-gray-200 text-left">Status</th>
+              <th class="p-3 border-b border-gray-200 text-left">Exit Code</th>
+              <th class="p-3 border-b border-gray-200 text-left">Exit Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+                v-for="job in jobs"
+                :key="job.jobExecutionId"
+                class="text-sm text-gray-800 hover:bg-[#e6f5f0] hover:text-[#1f4033]"
+            >
+                <td class="p-3 border-b border-gray-200">{{ job.jobName }}</td>
+                <td class="p-3 border-b border-gray-200">{{ formatDate(job.createTime) }}</td>
+                <td class="p-3 border-b border-gray-200">{{ formatDate(job.startTime) }}</td>
+                <td class="p-3 border-b border-gray-200">{{ formatDate(job.endTime) }}</td>
+                <td class="p-3 border-b border-gray-200">{{ job.status }}</td>
+                <td class="p-3 border-b border-gray-200">{{ job.exitCode }}</td>
+                <td class="p-3 border-b border-gray-200">
+                <span
+                    class="cursor-pointer text-[#369870] underline hover:text-[#1f4033]"
+                    @click="openPopup(job.exitMessage)"
+                >
+                    {{ truncate(job.exitMessage) }}
+                </span>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+      </div>
+  
+      <!-- 페이징 영역 -->
+      <div class="flex justify-center items-center space-x-4 mt-6">
+        <button
+          @click="goToPage(currentPage - 1)"
+          :disabled="currentPage === 0"
+          class="px-4 py-2 rounded bg-[#d3ebe1] text-[#1f4033] hover:bg-[#bfe2d3] disabled:opacity-50"
+        >
+          이전
+        </button>
+        <span class="text-gray-800 font-medium">
+          Page {{ currentPage + 1 }} / {{ totalPages }}
+        </span>
+        <button
+          @click="goToPage(currentPage + 1)"
+          :disabled="currentPage >= totalPages - 1"
+          class="px-4 py-2 rounded bg-[#d3ebe1] text-[#1f4033] hover:bg-[#bfe2d3] disabled:opacity-50"
+        >
+          다음
+        </button>
+      </div>
     </div>
-
-  </div>
-</template>
+  </template>
+  
+  
