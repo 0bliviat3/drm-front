@@ -78,7 +78,7 @@ const formatDate = (datetime) =>
             <td class="p-2 h-[40px]">{{ step.writeCount }}</td>
             <td class="p-2 h-[40px]">
               <span
-                class="cursor-pointer text-blue-600 underline"
+                class="cursor-pointer underline"
                 @click="openPopup(step.exitMessage)"
               >
                 {{ truncate(step.exitMessage) || '-' }}

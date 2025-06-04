@@ -23,7 +23,7 @@ const fetchJobLogs = async () => {
   }
 }
 
-const truncate = (text, maxLength = 30) =>
+const truncate = (text, maxLength = 10) =>
   text?.length > maxLength ? text.slice(0, maxLength) + '...' : text
 
 onMounted(fetchJobLogs)
@@ -77,7 +77,7 @@ const formatDate = (datetime) =>
                 <td class="p-3 h-[40px] border-b border-gray-200">{{ job.exitCode }}</td>
                 <td class="p-3 h-[40px] border-b border-gray-200">
                 <span
-                    class="cursor-pointer text-[#369870] underline hover:text-[#1f4033]"
+                    class="cursor-pointer underline hover:text-[#1f4033]"
                     @click="openPopup(job.exitMessage)"
                 >
                     {{ truncate(job.exitMessage) }}

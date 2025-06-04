@@ -20,13 +20,18 @@ const routes = [
       {
         path: '/batch',
         component: BatchManager,
-      },
+      },      
     ]
   },
   {
     path: '/login',
     name: 'Login',
     component: LoginView
+  },
+  {
+    path: '/cron-edit',
+    name: 'CronEdit',
+    component: () => import('@/views/CronEdit.vue')
   }
 ]
 
