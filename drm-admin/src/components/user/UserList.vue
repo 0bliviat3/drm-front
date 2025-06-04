@@ -37,6 +37,16 @@ const openCreateUserWindow = () => {
   window.open('/user-create', '_blank', features)
 }
 
+const openEditPopup = (user) => {
+  const url = `/user-edit?userId=${encodeURIComponent(user.userId)}&name=${encodeURIComponent(user.name)}`
+  window.open(
+    url,
+    '사용자 수정',
+    'width=700,height=500,resizable=no,scrollbars=yes'
+  )
+}
+
+
 
 onMounted(() => {
   fetchUsers()
@@ -50,7 +60,7 @@ onBeforeUnmount(() => {
 watch(currentPage, fetchUsers)
 
 const handleMessage = (event) => {
-  if (event.data === 'user-created') {
+  if (event.data === 'user-created' || event.data === 'user-updated') {
     fetchUsers()
   }
 }
@@ -88,12 +98,16 @@ const handleMessage = (event) => {
           <td class="p-2 h-[40px]">{{ user.name }}</td>
           <td class="p-2 h-[40px]">{{ formatDate(user.createTime) }}</td>
           <td class="p-2 h-[40px]">
-            <button class="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+            <button 
+              @click="openEditPopup(user)"
+              class="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
               수정
             </button>
           </td>
           <td class="p-2 h-[40px]">
-            <button class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+            <button 
+              @click=""  
+              class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">
               삭제
             </button>
           </td>
