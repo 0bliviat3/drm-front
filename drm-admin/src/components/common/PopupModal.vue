@@ -1,12 +1,12 @@
 <template>
     <div
       v-if="visible"
-      class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50"
+      class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 z-50"
     >
       <div
         ref="popup"
-        class="bg-white rounded shadow-lg w-[600px] max-h-[80vh] overflow-auto relative"
-        :style="{ top: position.top + 'px', left: position.left + 'px', position: 'absolute', color: 'white'}"
+        class="rounded shadow-lg w-[600px] max-h-[80vh] overflow-auto relative"
+        :style="{ top: position.top + 'px', left: position.left + 'px', position: 'absolute'}"
         @mousedown.stop
       >
         <div
@@ -14,9 +14,9 @@
           @mousedown="startDrag"
         >
           <span class="font-semibold">Exit Message</span>
-          <button class="text-black hover:text-red-500" @click="close">✕</button>
+          <button class="close-btn" @click="close">✕</button>
         </div>
-        <div class="p-4 whitespace-pre-wrap text-sm">
+        <div class="p-4 text-sm">
           {{ message }}
         </div>
       </div>
@@ -68,5 +68,20 @@
   
   <style scoped>
   /* Optional smoother animation */
+  .cursor-move {
+    background-color: #d2f0e5;
+    color: #1f4033;
+    font-weight: bold;
+    border: 3px solid #369870;
+  }
+  
+  .p-4.text-sm {
+    background-color: gainsboro;
+    color: black;
+  }
+
+  .close-btn {
+    background-color: #369870;
+  }
   </style>
   
