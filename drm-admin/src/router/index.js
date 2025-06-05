@@ -6,6 +6,7 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import UserList from '@/components/user/UserList.vue';
 import { compile } from 'vue';
 import LogManager from '@/views/LogManager.vue';
+import CryptoTest from '@/views/CryptoTest.vue';
 
 const routes = [
   {
@@ -31,7 +32,11 @@ const routes = [
       {
         path:'/logs',
         component: LogManager
-      }     
+      },
+      {
+        path:'/crypto',
+        component: CryptoTest
+      }   
     ]
   },
   {
