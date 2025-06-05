@@ -19,13 +19,16 @@
     },
     methods: {
       getUserNameFromCookie() {
-        return document.cookie
-          .split('; ')
-          .find(row => row.startsWith('userName='))
-          ?.split('=')[1] || '사용자';
+        const name = this.$cookies.get('userName')
+        return name ? name :'사용자';
       },
       goToProfile() {
-        alert('프로필 페이지는 추후 구현됩니다.');
+        const url = `/user-edit?userId=${this.$cookies.get('userId')}&name=${this.$cookies.get('userName')}`
+        window.open(
+          url,
+          '사용자 수정',
+          'width=700,height=500,resizable=no,scrollbars=yes'
+        )
       },
       logout() {
         try {
