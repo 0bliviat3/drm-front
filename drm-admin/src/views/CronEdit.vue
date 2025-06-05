@@ -6,12 +6,14 @@ import api from '@/api/axios'
 const route = useRoute()
 const jobBeanName = ref(route.query.jobBeanName || '')
 const cronExpression = ref(route.query.cron || '')
+const state = ref(route.query.state || '')
 
 const save = async () => {
   try {
     await api.put('/batch-management/edit', {
       jobBeanName: jobBeanName.value,
-      cronExpression: cronExpression.value
+      cronExpression: cronExpression.value,
+      state: state.value
     })
 
     // ✅ 부모창에 알림 후 닫기

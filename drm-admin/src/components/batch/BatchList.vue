@@ -53,7 +53,7 @@ const openCronEditWindow = (job) => {
   const windowFeatures = `width=${width},height=${height},top=${top},left=${left},resizable=no`
 
   window.open(
-    `/cron-edit?jobBeanName=${encodeURIComponent(job.jobBeanName)}&cron=${encodeURIComponent(job.cronExpression)}`,
+    `/cron-edit?jobBeanName=${encodeURIComponent(job.jobBeanName)}&cron=${encodeURIComponent(job.cronExpression)}&state=${encodeURIComponent(job.state)}`,
     '_blank',
     windowFeatures
   )
