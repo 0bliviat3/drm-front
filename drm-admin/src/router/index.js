@@ -5,6 +5,7 @@ import BatchManager from '@/views/BatchManager.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import UserList from '@/components/user/UserList.vue';
 import { compile } from 'vue';
+import LogManager from '@/views/LogManager.vue';
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
       {
         path:'/users',
         component: UserList
+      },
+      {
+        path:'/logs',
+        component: LogManager
       }     
     ]
   },

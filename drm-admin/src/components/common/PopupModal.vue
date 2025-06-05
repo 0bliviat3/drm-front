@@ -13,7 +13,7 @@
           class="bg-gray-200 px-4 py-2 cursor-move flex justify-between items-center"
           @mousedown="startDrag"
         >
-          <span class="font-semibold">Exit Message</span>
+          <span class="font-semibold">info</span>
           <button class="close-btn" @click="close">✕</button>
         </div>
         <div class="p-4 text-sm">
