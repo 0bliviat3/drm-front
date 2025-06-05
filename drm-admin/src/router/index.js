@@ -48,6 +48,11 @@ const routes = [
     path: '/user-edit',
     name: 'UserEdit',
     component: () => import('@/components/user/UserEdit.vue')
+  },
+  {
+    path: '/user-delete',
+    name: 'UserDelete',
+    component: () => import('@/components/user/UserDelete.vue')
   }
 ]
 

@@ -46,6 +46,14 @@ const openEditPopup = (user) => {
   )
 }
 
+const openDeletePopup = (userId) => {
+  const popup = window.open(
+    `/user-delete?userId=${userId}`,
+    'UserDeleteWindow',
+    'width=500,height=250'
+  )
+}
+
 
 
 onMounted(() => {
@@ -60,7 +68,7 @@ onBeforeUnmount(() => {
 watch(currentPage, fetchUsers)
 
 const handleMessage = (event) => {
-  if (event.data === 'user-created' || event.data === 'user-updated') {
+  if (event.data === 'user-created' || event.data === 'user-updated' || event.data === 'user-deleted') {
     fetchUsers()
   }
 }
@@ -106,7 +114,7 @@ const handleMessage = (event) => {
           </td>
           <td class="p-2 h-[40px]">
             <button 
-              @click=""  
+              @click="openDeletePopup(user.userId)"  
               class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">
               삭제
             </button>
