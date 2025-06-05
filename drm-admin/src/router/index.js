@@ -8,6 +8,7 @@ import { compile } from 'vue';
 import LogManager from '@/views/LogManager.vue';
 import CryptoTest from '@/views/CryptoTest.vue';
 import FunctionManual from '@/views/FunctionManual.vue';
+import { isAuthenticated } from '@/utils/auth'
 
 const routes = [
   {
@@ -74,6 +75,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next() // 로그인 페이지는 항상 허용
+  } else if (!isAuthenticated()) {
+    next('/login') // 쿠키가 없으면 로그인 페이지로
+  } else {
+    next() // 인증된 경우 정상 접근
+  }
 })
 
 export default router
